@@ -9,6 +9,10 @@ Supports multiple barcodes in one image and detects what type of barcodes there 
 I've taken the web version of Eddie's demo and done some housekeeping a little bit. 
 I've also made a simple function to setup the live stream barcode reader.
 
+You can find the new demo here
+
+https://iemadk.github.io/BarCode-reader
+
 ## How to use
 Starter template
 
