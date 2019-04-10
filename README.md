@@ -1,4 +1,4 @@
-BarcodeReader v1.6 for Web
+BarcodeReader v2.0 for Web
 ==========================
 This is a fork from https://github.com/EddieLa/JOB
 
@@ -6,4 +6,34 @@ BarcodeReader is a barcode reader for Code128, Code93, Code39, Standard/Industri
 Interleaved 2 of 5, Codabar and EAN-13 barcodes in javascript.
 Supports multiple barcodes in one image and detects what type of barcodes there are.
 
-Version 1.6 is up with a completely reworked localization process and also added a BarcodeReader object to facilitate more ease of use. Just reference BarcodeReader.js, always execute a call to BarcodeReader.Init() in the beginning and then for decoding of images set callback function using BarcodeReader.SetImageCallback(callback) and then call BarcodeReader.DecodeImage(img). Also added functionality in BarcodeReader to decode a video stream for use with getUserMedia, which was the original idea. Hopefully this localization will be a significant improvement and I will in the (hopefully) near future do a rework of the decoding algorithm to make it a bit faster and more accurate.
+I've taken the web version of Eddie's demo and done some housekeeping a little bit. 
+I've also made a simple function to setup the live stream barcode reader.
+
+## How to use
+Starter template
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <p id="code">code will appear here</p>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="BarcodeScanner.js"></script>
+  <script src="app.js"></script>
+  <script>
+    var resultElement = document.getElementById('code')
+    setupLiveReader(resultElement)
+  </script>
+</body>
+
+</html>
+```
