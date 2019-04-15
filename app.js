@@ -1,4 +1,7 @@
 function setupLiveReader(resultElement) {
+  var closeButton = $(
+    '<button class="uk-button uk-button-primary uk-width-1-1" onclick="stopBarcodeReader()">Close</button>'
+  )
   var container = document.createElement('div')
 
   container.style.position = 'absolute'
@@ -7,6 +10,8 @@ function setupLiveReader(resultElement) {
   container.style.height = '100%'
   container.style.left = '0'
   container.style.top = '0'
+  container.style.background = '#474C55'
+  container.id = 'barcode-reader'
 
   var canvas = document.createElement('canvas')
   var video = document.createElement('video')
@@ -14,9 +19,10 @@ function setupLiveReader(resultElement) {
 
   canvas.style.position = 'absolute'
 
+  container.appendChild(closeButton[0])
   container.appendChild(canvas)
 
-  document.body.insertBefore(container, resultElement)
+  document.body.appendChild(container)
 
   const constraints = {
     audio: false,
@@ -28,16 +34,16 @@ function setupLiveReader(resultElement) {
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then(function(stream) {
+      window.currentStream = stream.getTracks()[0]
       video.width = 320
 
       BarcodeScanner.init()
       BarcodeScanner.streamCallback = function(result) {
         console.log('barcode detected, stream will stop')
-        resultElement.innerHTML = result[0].Value
+        resultElement.value = result[0].Value
+
         BarcodeScanner.StopStreamDecode()
-        video.pause()
-        stream.getTracks()[0].stop()
-        container.style.display = 'none'
+        stopBarcodeReader()
       }
 
       video.setAttribute('autoplay', '')
@@ -57,7 +63,7 @@ function setupLiveReader(resultElement) {
         canvas.style.width = rect.width + 'px'
         canvas.style.top = rect.top + 'px'
         canvas.style.left = rect.left + 'px'
-        const overlayColor = 'rgba(0,0,0,0.9)'
+        const overlayColor = 'rgba(71, 76, 85, .9)'
         context.fillStyle = overlayColor
         context.fillRect(0, 0, rect.width, rect.height)
         context.clearRect(
@@ -80,4 +86,11 @@ function setupLiveReader(resultElement) {
     .catch(function(err) {
       console.log(err)
     })
+}
+
+function stopBarcodeReader() {
+  var barcodeContainer = document.getElementById('barcode-reader')
+  document.body.removeChild(barcodeContainer)
+
+  window.currentStream.stop()
 }
