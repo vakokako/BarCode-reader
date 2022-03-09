@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
-<body>
-  <p id="code">code will appear here</p>
+<script>
+    function scanPalletteId() {
+        var resultElement = document.getElementById('pallette-id')
+        setupLiveReader(resultElement)
+    }
+    function scanBoxIds() {
+        var resultElement = document.getElementById('pallette-id2')
+        setupLiveReader(resultElement)
+    }
+</script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="BarcodeScanner.js"></script>
-  <script src="app.js"></script>
-  <script>
-    var resultElement = document.getElementById('code')
-    setupLiveReader(resultElement)
-  </script>
+<body>
+    <p id="pallette-id">code will appear here</p>
+    <button onclick="scanPalletteId()"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Scan Barcode
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="BarcodeScanner.js"></script>
+    <script src="app.js"></script>
+    <!-- <script>
+  </script> -->
 </body>
 
 </html>
