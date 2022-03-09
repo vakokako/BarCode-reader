@@ -11,7 +11,7 @@ I've also made a simple function to setup the live stream barcode reader.
 
 You can find the new demo here
 
-https://iemadk.github.io/BarCode-reader
+https://vakokako.github.io/BarCode-reader
 
 ## How to use
 Starter template
