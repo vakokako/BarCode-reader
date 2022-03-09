@@ -32,12 +32,13 @@ function setupLiveReader(resultElement) {
 
       BarcodeScanner.init()
       BarcodeScanner.streamCallback = function(result) {
-        console.log('barcode detected, stream will stop')
-        resultElement.innerHTML = result[0].Value
-        BarcodeScanner.StopStreamDecode()
-        video.pause()
-        stream.getTracks()[0].stop()
-        container.style.display = 'none'
+        console.log('barcode detected:' + result[0].Value)
+        // console.log('barcode detected, stream will stop')
+        // resultElement.innerHTML = result[0].Value
+        // BarcodeScanner.StopStreamDecode()
+        // video.pause()
+        // stream.getTracks()[0].stop()
+        // container.style.display = 'none'
       }
 
       video.setAttribute('autoplay', '')
